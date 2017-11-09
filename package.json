@@ -1,0 +1,22 @@
+{
+  "name": "fogcloud",
+  "version": "1.0.0",
+  "description": "Readings storage server on cloud",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "node ."
+  },
+  "keywords": [
+    "FogLAMP",
+    "readings",
+    "cloud storage"
+  ],
+  "author": "Praveen Garg",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2"
+  }
+}
