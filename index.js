@@ -16,24 +16,23 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 // App listening.
-app.listen(3000, function () {
-  console.log("Fog(Test)Cloud listening on port 3000!");
+app.listen(8118, function () {
+  console.log("Fog(Test)Cloud listening on port 8118!");
 });
 
 var router = express.Router();              // get an instance of the express Router
 
-// test route to make sure everything is working (accessed at GET http://localhost:3000/api)
+// test route to make sure everything is working (accessed at GET http://localhost:8118/ingress)
 router.get('/', function(req, res) {
     res.json({ message: 'Welcome to Fog(Test)Cloud! :]' });   
 });
 
-router.route('/reading')
+router.route('/message')
     
-    // create a reading (accessed at POST http://localhost:3000/api/reading)
+    // create a reading (accessed at POST http://localhost:8118/ingress/message)
     .post(function(req, res) {
         var read = {};
         read =  req.body;
-        // TODO: implement validateReading to validate 
         isValid = validateReading(read);
         if (! isValid) {
             discarded ++
@@ -46,12 +45,11 @@ router.route('/reading')
         res.json({"recieved": "Valid Payload: " + counter});
     });
 
-router.route('/reading-block')
+router.route('/messages')
     
-    // create a reading (accessed at POST http://localhost:3000/api/reading-block)
+    // create a reading (accessed at POST http://localhost:8118/ingress/messages)
     .post(function(req, res) {
         var readingBlock =  req.body;
-        // TODO: implement validateReading to validate 
         isValid = validateReadingBlock(readingBlock);
         if (! isValid) {
             blockDiscarded ++
@@ -65,7 +63,7 @@ router.route('/reading-block')
     });
 
 // all of our routes will be prefixed with /api
-app.use('/api', router);
+app.use('/ingress', router);
 
 function validateReading(readingPayload) {    
     isValid = readingPayload.asset === undefined ? false : true;
@@ -101,19 +99,27 @@ function validateReadingBlock(readingPayload) {
     isValid = readingPayload.asset_code === undefined ? false : true;
     if (! isValid) { return isValid}
 
-    isValid = readingPayload.reading === undefined ? false : true;
+    isValid = readingPayload.readings === undefined ? false : true;
     if (! isValid) { return isValid}
 
-    read = readingPayload.reading
+    reads = readingPayload.readings
 
-    isValid = read.read_key === undefined ? false : true;
+    isValid = (reads instanceof Array) ? true : false;
     if (! isValid) { return isValid}
 
-    isValid = read.reading === undefined ? false : true;
-    if (! isValid) { return isValid}
+    reads.forEach(function(r) {
+        isValid = r.read_key === undefined ? false : true;
+        if (! isValid) { return isValid}
 
-    isValid = read.user_ts === undefined ? false : true;
-    if (! isValid) { return isValid}
+        isValid = r.reading === undefined ? false : true;
+        if (! isValid) { return isValid}
 
+        isValid = r.user_ts === undefined ? false : true;
+        if (! isValid) { return isValid}
+
+    }, this);
+       
+
+    
     return true
 }

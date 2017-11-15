@@ -5,7 +5,7 @@ function sendHttp(payload) {
    // Send a POST request
    axios({
     method: 'POST',
-    url: 'http://localhost:3000/api/reading',
+    url: 'http://localhost:8118/ingress/message',
     data: payload
   })
   .then(function (response) {
@@ -20,7 +20,7 @@ function sendBlockHttp(payload) {
    // Send a POST request
    axios({
     method: 'POST',
-    url: 'http://localhost:3000/api/reading-block',
+    url: 'http://localhost:8118/ingress/messages',
     data: payload
   })
   .then(function (response) {
@@ -52,14 +52,31 @@ function preparePayloads() {
 
 function prepareBlockPayloads() {
     
-    // ASK and FIX ME:
-    // reading or readings
-    // and this will have one object only? or an array (obviously array can have 1 object too if timed-window allowed only 1)
-    valid_1 = {"asset_code": "TI Sensor Tag/temperature", "reading": {"read_key": "f1cfff7a-3769-4f47-9ded-00f0975d66f5", "reading": {"temperature": 41, "humidity": 88}, "user_ts": "2017-10-11 15:10:51.927191906"}}
-    
-    invalid_1 = {"asset_cod": "TI Sensor Tag/temperature", "reading": {"read_key": "f1cfff7a-3769-4f47-9ded-00f0975d66f5", "reading": {"temperature": 41, "humidity": 88}, "user_ts": "2017-10-11 15:10:51.927191906"}}
-    
-    payloads = new Array(valid_1, invalid_1);
+    valid_1 = { "asset_code": "TI Sensor Tag/temperature",
+     "readings": [
+         {
+             "read_key": "f1cfff7a-3769-4f47-9ded-00f0975d66f5",
+             "reading": {
+                 "temperature": 23,
+                 "humidity": 6
+                },
+                "user_ts": "2017-10-11 15:10:51.927191906"
+            },
+            {
+                "read_key": "78f73c9f-bc11-4b8d-a246-58863adf66b5",
+                "reading": {
+                    "temperature": 41,
+                    "humidity": 88
+                },
+                "user_ts": "2017-10-11 15:10:51.930077316"
+            }
+        ]
+    }
+    invalid_1 = {"asset_cod": "TI Sensor Tag/temperature", "readings": [{"read_key": "f1cfff7a-3769-4f47-9ded-00f0975d66f5", "reading": {"temperature": 41, "humidity": 88}, "user_ts": "2017-10-11 15:10:51.927191906"}]}
+    invalid_2 = {"asset_code": "TI Sensor Tag/temperature", "reading": [{"read_key": "f1cfff7a-3769-4f47-9ded-00f0975d66f5", "reading": {"temperature": 41, "humidity": 88}, "user_ts": "2017-10-11 15:10:51.927191906"}]}
+    invalid_3 = {"asset_code": "TI Sensor Tag/temperature", "readings": {"read_key": "f1cfff7a-3769-4f47-9ded-00f0975d66f5", "reading": {"temperature": 41, "humidity": 88}, "user_ts": "2017-10-11 15:10:51.927191906"}}
+
+    payloads = new Array(valid_1, invalid_1, invalid_2, invalid_3);
 
     return payloads;
 }
