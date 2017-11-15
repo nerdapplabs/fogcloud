@@ -6,6 +6,9 @@ const app = express();
 var counter = 0;
 var discarded = 0;
 
+var blockCounter = 0;
+var blockDiscarded = 0;
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -43,25 +46,43 @@ router.route('/reading')
         res.json({"recieved": "Valid Payload: " + counter});
     });
 
+router.route('/reading-block')
+    
+    // create a reading (accessed at POST http://localhost:3000/api/reading-block)
+    .post(function(req, res) {
+        var readingBlock =  req.body;
+        // TODO: implement validateReading to validate 
+        isValid = validateReadingBlock(readingBlock);
+        if (! isValid) {
+            blockDiscarded ++
+            console.log("Invalid Block Payload", readingBlock)
+            res.json({"error": "Invalid Block Payload: " + blockDiscarded});
+            return;
+        }
+        blockCounter++
+        console.log("Valid Block payload", readingBlock)
+        res.json({"recieved": "Valid Block Payload: " + blockCounter});
+    });
+
 // all of our routes will be prefixed with /api
 app.use('/api', router);
 
-function validateReading(reading_payload) {    
-    isValid = reading_payload.asset === undefined ? false : true;
+function validateReading(readingPayload) {    
+    isValid = readingPayload.asset === undefined ? false : true;
     // console.log("asset", isValid);
     if (! isValid) { return isValid}
 
-    isValid = reading_payload.timestamp === undefined ? false : true;
+    isValid = readingPayload.timestamp === undefined ? false : true;
     // console.log("timestamp", isValid);
     if (! isValid) { return isValid}
 
-    isValid = reading_payload.key === undefined ? false : true;
+    isValid = readingPayload.key === undefined ? false : true;
     // console.log("key", isValid);
     if (! isValid) { return isValid}
     
-    readings = reading_payload.readings === undefined ? false : true;
+    readings = readingPayload.readings === undefined ? false : true;
     // console.log("readings", readings);
-    sensor_values = reading_payload.sensor_values === undefined ? false : true;
+    sensor_values = readingPayload.sensor_values === undefined ? false : true;
     // console.log("sensor_values", sensor_values);
     isValid = readings || sensor_values
     // console.log("readings || sensor_values", isValid);
@@ -72,5 +93,27 @@ function validateReading(reading_payload) {
         # check key is UUID?  
         # readings should be valid dict/json?
     */
+    return true
+}
+
+function validateReadingBlock(readingPayload) {
+
+    isValid = readingPayload.asset_code === undefined ? false : true;
+    if (! isValid) { return isValid}
+
+    isValid = readingPayload.reading === undefined ? false : true;
+    if (! isValid) { return isValid}
+
+    read = readingPayload.reading
+
+    isValid = read.read_key === undefined ? false : true;
+    if (! isValid) { return isValid}
+
+    isValid = read.reading === undefined ? false : true;
+    if (! isValid) { return isValid}
+
+    isValid = read.user_ts === undefined ? false : true;
+    if (! isValid) { return isValid}
+
     return true
 }
