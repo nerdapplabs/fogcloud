@@ -114,7 +114,7 @@ function validateReadingBlock(readingPayload) {
         isValid = r.reading === undefined ? false : true;
         if (! isValid) { return isValid}
 
-        isValid = r.user_ts === undefined ? false : true;
+        isValid = r.timestamp === undefined ? false : true;
         if (! isValid) { return isValid}
 
     }, this);

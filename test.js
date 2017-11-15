@@ -68,13 +68,13 @@ function prepareBlockPayloads() {
                     "temperature": 41,
                     "humidity": 88
                 },
-                "user_ts": "2017-10-11 15:10:51.930077316"
+                "timestamp": "2017-10-11 15:10:51.930077316"
             }
         ]
     }
-    invalid_1 = {"asset_cod": "TI Sensor Tag/temperature", "readings": [{"read_key": "f1cfff7a-3769-4f47-9ded-00f0975d66f5", "reading": {"temperature": 41, "humidity": 88}, "user_ts": "2017-10-11 15:10:51.927191906"}]}
-    invalid_2 = {"asset_code": "TI Sensor Tag/temperature", "reading": [{"read_key": "f1cfff7a-3769-4f47-9ded-00f0975d66f5", "reading": {"temperature": 41, "humidity": 88}, "user_ts": "2017-10-11 15:10:51.927191906"}]}
-    invalid_3 = {"asset_code": "TI Sensor Tag/temperature", "readings": {"read_key": "f1cfff7a-3769-4f47-9ded-00f0975d66f5", "reading": {"temperature": 41, "humidity": 88}, "user_ts": "2017-10-11 15:10:51.927191906"}}
+    invalid_1 = {"asset_cod": "TI Sensor Tag/temperature", "readings": [{"read_key": "f1cfff7a-3769-4f47-9ded-00f0975d66f5", "reading": {"temperature": 41, "humidity": 88}, "timestamp": "2017-10-11 15:10:51.927191906"}]}
+    invalid_2 = {"asset_code": "TI Sensor Tag/temperature", "reading": [{"read_key": "f1cfff7a-3769-4f47-9ded-00f0975d66f5", "reading": {"temperature": 41, "humidity": 88}, "timestamp": "2017-10-11 15:10:51.927191906"}]}
+    invalid_3 = {"asset_code": "TI Sensor Tag/temperature", "readings": {"read_key": "f1cfff7a-3769-4f47-9ded-00f0975d66f5", "reading": {"temperature": 41, "humidity": 88}, "timestamp": "2017-10-11 15:10:51.927191906"}}
 
     payloads = new Array(valid_1, invalid_1, invalid_2, invalid_3);
 
