@@ -94,31 +94,36 @@ function validateReading(readingPayload) {
     return true
 }
 
-function validateReadingBlock(readingPayload) {
+function validateReadingBlock(readingBlockPayload) {
 
-    isValid = readingPayload.asset_code === undefined ? false : true;
+    isValid = (readingBlockPayload instanceof Array) ? true : false;
     if (! isValid) { return isValid}
 
-    isValid = readingPayload.readings === undefined ? false : true;
-    if (! isValid) { return isValid}
-
-    reads = readingPayload.readings
-
-    isValid = (reads instanceof Array) ? true : false;
-    if (! isValid) { return isValid}
-
-    reads.forEach(function(r) {
-        isValid = r.read_key === undefined ? false : true;
+    
+    readingBlockPayload.forEach(function(readingPayload) {
+        isValid = readingPayload.asset_code === undefined ? false : true;
         if (! isValid) { return isValid}
 
-        isValid = r.reading === undefined ? false : true;
+        isValid = readingPayload.readings === undefined ? false : true;
         if (! isValid) { return isValid}
 
-        isValid = r.timestamp === undefined ? false : true;
+        reads = readingPayload.readings
+
+        isValid = (reads instanceof Array) ? true : false;
         if (! isValid) { return isValid}
 
-    }, this);
-       
+        reads.forEach(function(r) {
+            isValid = r.read_key === undefined ? false : true;
+            if (! isValid) { return isValid}
+
+            isValid = r.reading === undefined ? false : true;
+            if (! isValid) { return isValid}
+
+            isValid = r.timestamp === undefined ? false : true;
+            if (! isValid) { return isValid}
+
+        }, this);
+    }, this); 
 
     
     return true
