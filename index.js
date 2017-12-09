@@ -42,7 +42,7 @@ router.route('/message')
         }
         counter++
         console.log("Valid payload", read)
-        res.json({"recieved": "Valid Payload: " + counter});
+        res.json({"received": "Valid Payload: " + counter});
     });
 
 router.route('/messages')
@@ -59,7 +59,7 @@ router.route('/messages')
         }
         blockCounter++
         console.log("Valid Block payload", readingBlock)
-        res.json({"recieved": "Valid Block Payload: " + blockCounter});
+        res.json({"received": "Valid Block Payload: " + blockCounter});
     });
 
 // all of our routes will be prefixed with /api

@@ -117,8 +117,8 @@ function prepareBlockPayloads() {
             }
         ]
     }
-    
-    payloads = new Array(valid_1, invalid_1, invalid_2, invalid_3, invalid_4);
+    invalid_5 = {"readings": [{"read_key": "f1cfff7a-3769-4f47-9ded-00f0975d66f5", "reading": {"temperature": 41, "humidity": 88},}]}
+    payloads = new Array(valid_1, invalid_1, invalid_2, invalid_3, invalid_4, invalid_5);
 
     return payloads;
 }
