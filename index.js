@@ -53,12 +53,12 @@ router.route('/messages')
         isValid = validateReadingBlock(readingBlock);
         if (! isValid) {
             blockDiscarded ++
-            console.log("Invalid Block Payload", readingBlock)
+            console.log("Invalid Block Payload", JSON.stringify(readingBlock))
             res.json({"error": "Invalid Block Payload: " + blockDiscarded});
             return;
         }
         blockCounter++
-        console.log("Valid Block payload", readingBlock)
+        console.log("Valid Block payload", JSON.stringify(readingBlock))
         res.json({"received": "Valid Block Payload: " + blockCounter});
     });
 
