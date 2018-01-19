@@ -10,13 +10,15 @@ $ npm -v
 4.6.1
 ```
 
-## To install, Use or Test:
+## To install, Use:
 
 * npm install
 
 * npm start
 
-* npm run test 
+## To run tests:
+
+* npm run test (run in different session as these are integration not unit tests)
 
 ## ping
 
@@ -24,55 +26,23 @@ http://localhost:8118
 
 ## Request:
 
-`curl -X POST -H "Content-Type: application/json" http://localhost:8118/ingress/messages -d <payload>`
+* `curl -X POST -H "Content-Type: application/json" http://localhost:8118/ingress/messages -d <payload>`
 
-### Valid Block Payloads
+* `curl -X POST -H "Content-Type: application/json" http://localhost:8118/ingress/messages -d @payload.json`
 
-see test.js
+### Valid/Invalid Block Payloads
 
-### Invalid Block Payloads
+* see [test.js](test.js)
 
-see test.js
-
-
-Not sure about this one?
-
-`'{"timestamp": "2017-01-02T01:02:03.23232Z-05:00", "asset": "pump1", "key": "80a43623-ebe5-40d6-8d80-3f892da9b3b4", "readings": ["x"]}'`
+* see valid [payload.json](payload.json)
 
 ## Expected Response:
 
 ### For Valid Block Payload
-`{"recieved": "Valid Block Payload: <counter_top_index>"}`
+`{"received": "Valid Block Payload: <counter_top_index>"}`
 
 ### For Invalid Block Payload
 
 `{"error": "Invalid Block Payload: <counter_top_index>"}`
 
-## Request:
-
-`curl -X POST -H "Content-Type: application/json" http://localhost:8118/ingress/message -d <payload>`
-
-### Valid Payloads
-
-see test.js
-
-
-
-### Invalid Payloads
-
-see test.js
-
-
-
-This one?
-
-`'{"timestamp": "2017-01-02T01:02:03.23232Z-05:00", "asset": "pump1", "key": "80a43623-ebe5-40d6-8d80-3f892da9b3b4", "readings": "x"}'`
-
-## Expected Response:
-
-### For Valid Payload
-`{"recieved": "Valid Payload: <counter_top_index>"}`
-
-### For Invalid Payload
-
-`{"error": "Invalid Payload: <counter_top_index>"}`
+> For Invalid Block Payloads, There will be HTTP error code 400~500 | and message, once issue#4 is resolved!
