@@ -16,7 +16,8 @@ $ npm -v
 
 * npm start
 
-* npm run test 
+# How to run tests?
+* npm run test (run in different session as these are integration not unit tests)
 
 ## ping
 
@@ -30,9 +31,9 @@ http://localhost:8118
 
 ### Valid/Invalid Block Payloads
 
-* see test.js
+* see [test.js](test.js)
 
-* see payload.json
+* see valid [payload.json](payload.json)
 
 ## Expected Response:
 
@@ -42,20 +43,3 @@ http://localhost:8118
 ### For Invalid Block Payload
 
 `{"error": "Invalid Block Payload: <counter_top_index>"}`
-
-## Request:
-
-`curl -X POST -H "Content-Type: application/json" http://localhost:8118/ingress/message -d <payload>`
-
-### Valid/Invalid Payloads
-
-see test.js
-
-## Expected Response:
-
-### For Valid Payload
-`{"received": "Valid Payload: <counter_top_index>"}`
-
-### For Invalid Payload
-
-`{"error": "Invalid Payload: <counter_top_index>"}`
