@@ -10,13 +10,14 @@ $ npm -v
 4.6.1
 ```
 
-## To install, Use or Test:
+## To install, Use:
 
 * npm install
 
 * npm start
 
-# How to run tests?
+## To run tests:
+
 * npm run test (run in different session as these are integration not unit tests)
 
 ## ping
@@ -43,3 +44,5 @@ http://localhost:8118
 ### For Invalid Block Payload
 
 `{"error": "Invalid Block Payload: <counter_top_index>"}`
+
+> For Invalid Block Payloads, There will be HTTP error code 400~500 | and message, once issue#4 is resolved!
