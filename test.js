@@ -8,10 +8,13 @@ function sendBlockHttp(payload) {
     data: payload
   })
   .then(function (response) {
+    console.log(response.status, response.statusText);
     console.log(response.data);
   })
   .catch(function (error) {
-    console.log(error.data);
+    errResponse = error.response
+    console.log(errResponse.status, errResponse.statusText);
+    console.log(errResponse.data);
   });
 }
 
