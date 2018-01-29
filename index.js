@@ -26,7 +26,7 @@ router.get('/', function(req, res) {
 
 router.route('/messages')    
     // create a reading (accessed at POST http://localhost:8118/ingress/messages)
-    .post(function(req, res, err) {
+    .post(function(req, res) {
         var readingBlock =  req.body;
         isValid = validateReadingBlock(readingBlock);
         if (! isValid) {
