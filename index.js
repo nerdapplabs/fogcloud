@@ -32,9 +32,7 @@ router.route('/messages')
         if (! isValid) {
             blockDiscarded ++
             console.log("Invalid Block Payload", JSON.stringify(readingBlock))
-            // res.json({"error": "Invalid Block Payload: " + blockDiscarded});
-            // return;
-            var obj = {"code": 400, "reason": "HTTPBadRequest"}   
+            var obj = {"code": 400, "reason": "Invalid Block Payload: " + blockDiscarded}   
             throw new Error(JSON.stringify(obj));
         }
         blockCounter++
