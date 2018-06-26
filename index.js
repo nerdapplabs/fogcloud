@@ -32,8 +32,8 @@ router.route('/messages')
         if (! isValid) {
             blockDiscarded ++
             console.log("Invalid Block Payload", JSON.stringify(readingBlock))
-            res.json({"error": "Invalid Block Payload: " + blockDiscarded});
-            return;
+            var obj = {"code": 400, "reason": "Invalid Block Payload: " + blockDiscarded}   
+            throw new Error(JSON.stringify(obj));
         }
         blockCounter++
         console.log("Valid Block payload", JSON.stringify(readingBlock))
@@ -81,3 +81,9 @@ function validateReadingBlock(readingBlockPayload) {
     }
     return true;
 }
+
+app.use(function(err, req, res, next) {
+    e = JSON.parse(err.message);
+    // Your Error Status code and message here.
+    res.status(e.code).send(e.reason);
+});
