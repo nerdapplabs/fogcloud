@@ -18,31 +18,15 @@ $ npm -v
 
 ## To run tests:
 
-* npm run test (run in different session as these are integration not unit tests)
+* `npm  test` (run in different session as these are integration test not the unit tests)
 
-## ping
+## Ping
 
-http://localhost:8118
+http://localhost:6683
 
 ## Request:
 
-* `curl -X POST -H "Content-Type: application/json" http://localhost:8118/ingress/messages -d <payload>`
+* `curl -X POST -H "Content-Type: application/json" http://localhost:6683/sensor-reading -d <payload>`
 
-* `curl -X POST -H "Content-Type: application/json" http://localhost:8118/ingress/messages -d @payload.json`
+* `curl -X POST -H "Content-Type: application/json" http://localhost:6683/sensor-reading -d @payload.json`
 
-### Valid/Invalid Block Payloads
-
-* see [test.js](test.js)
-
-* see valid [payload.json](payload.json)
-
-## Expected Response:
-
-### For Valid Block Payload
-`{"received": "Valid Block Payload: <counter_top_index>"}`
-
-### For Invalid Block Payload
-
-`{"error": "Invalid Block Payload: <counter_top_index>"}`
-
-> For Invalid Block Payloads, There will be HTTP error code 400~500 | and message, once issue#4 is resolved!
