@@ -1,39 +1,14 @@
-[{ "asset_code": "TI Sensor Tag/temperature",
-    "readings": [
-        {
-            "read_key": "f1cfff7a-3769-4f47-9ded-00f0975d66f5",
-            "reading": {
-                "temperature": 23,
-                "humidity": 6
-               },
-               "user_ts": "2017-10-11 15:10:51.927191906"
-           },
-           {
-               "read_key": "78f73c9f-bc11-4b8d-a246-58863adf66b5",
-               "reading": {
-                   "temperature": 41,
-                   "humidity": 88
-               },
-               "timestamp": "2017-10-11 15:10:51.930077316"
-           }
-       ]
-   },
-   { "asset_code": "TI Sensor Tag/blah",
-   "readings": [
-       {
-           "read_key": "f1cfff7a-3769-4f47-9ded-00f0975d6665",
-           "reading": {
-               "blah1": 23
-              },
-              "user_ts": "2017-10-11 15:10:51.927191907"
-          },
-          {
-              "read_key": "78f73c9f-bc11-4b8d-a246-58863adf66a5",
-              "reading": {
-                  "temperature": 41,
-                  "humidity": 88
-              },
-              "timestamp": "2017-10-11 15:10:51.930077318"
-          }
-      ]
-  }]
+[
+  {
+    "timestamp": "2017-01-02T01:02:03.23232Z-05:00",
+    "asset": "pump1",
+    "key": "80a43623-ebe5-40d6-8d80-3f892da9b3b4",
+    "readings": { "humidity": 0, "temperature": -40 }
+  },
+  {
+    "timestamp": "2017-01-02T01:02:03.23232Z-05:00",
+    "asset": "pump2",
+    "key": "80a43623-ebe5-40d6-8d80-3f892da9b3b5",
+    "readings": { "humidity": 0, "temperature": -39 }
+  }
+]
