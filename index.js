@@ -10,7 +10,10 @@ var totalSinceStart = 0;
 
 var blockDiscarded = 0;
 
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
+bp_json = bodyParser.json({limit:1024*1024*50, type:'application/json'});
+app.use(bp_json);
+
 app.use(bodyParser.urlencoded({ extended: true }));
 // Enabling CORS
 app.use(cors());
